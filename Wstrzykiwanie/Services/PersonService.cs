@@ -1,34 +1,44 @@
-﻿using Wstrzykiwanie.Data;
+﻿using Extensions;
+using Models.ModelsView;
+using Wstrzykiwanie.Data;
 using Wstrzykiwanie.Interfaces;
 using Wstrzykiwanie.Models;
 using Wstrzykiwanie.ViewModels.Person;
 
-namespace Wstrzykiwanie.Services
-{
+namespace Wstrzykiwanie.Services {
+
     public class PersonService : IPersonService
     {
-        private readonly IPersonRepository _personRepo;
-        public PersonService(IPersonRepository personRepo)
+        private readonly IPersonRepository _repo;
+
+        public PersonService(IPersonRepository repository)
         {
-            _personRepo = personRepo;
+            _repo = repository;
         }
-        public ListPersonForListVM GetPeopleForList()
+
+
+
+        public void AddEntry(Person person)
         {
-            var people = _personRepo.GetAllActivePeople();
-            ListPersonForListVM result = new
-            ListPersonForListVM();
-            result.People = new List<PersonForListVm>();
-            foreach (var person in people)
-            {
-                // mapowanie obiektow
-                var pVM = new PersonForListVm()
-                {
-                    Id = person.Id,
-                    FullName = person.FirstName + " " + person.LastName
-                };
-                result.People.Add(pVM);
-            }
-            result.Count = result.People.Count;
+            _repo.AddEntry(person);
+        }
+        public PersonListModelView GetPeople()
+        {
+            var people = _repo.GetAllEntries().ToModel();
+            PersonListModelView result = new();
+
+            result.People = people.ToList();
+            result.Count = people.Count();
+            return result;
+        }
+
+        public PersonListModelView GetPeopleToday()
+        {
+            var people = _repo.GetEntriesFromToday().ToModel();
+            PersonListModelView result = new();
+
+            result.People = people.ToList();
+            result.Count = people.Count();
             return result;
         }
     }

@@ -10,6 +10,6 @@ namespace Wstrzykiwanie.Models
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-        public ICollection<PersonGroup>? PersonGroups { get; set; }
+        //public ICollection<PersonGroup>? PersonGroups { get; set; }
     }
 }

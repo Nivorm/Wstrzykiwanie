@@ -1,0 +1,27 @@
+﻿@page
+@model WstrzykiwanieSerwisów.Pages.OstatnioSzukane
+@if (TempData["Success"] is not null)
+{
+    <div class="alert-success">
+        Osoba została usunięta pomyślnie
+    </div>
+}
+<div class="text-center">
+     <table class="table table-bordered table-striped" style="width: 100%">
+        <tbody>
+            @foreach(var person in @Model.Records.People)
+            {
+                <tr>
+                    <td>@person.Id</td>
+                    <td>@person.FullName</td>
+
+                    <td>
+                        <div class="w-75 btn-group" >
+                            <a asp-page="Shared/Usun" asp-route-id="@person.Id" class="btn btn-danger mx-2">Usuń</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

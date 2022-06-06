@@ -4,6 +4,11 @@ namespace Wstrzykiwanie.Interfaces
 {
     public interface IPersonRepository
     {
-        IQueryable<Person> GetAllActivePeople();
+        public void AddEntry(Person person);
+
+        public IQueryable<Person> GetAllEntries();
+
+        public IQueryable<Person> GetEntriesFromToday();
     }
+
 }

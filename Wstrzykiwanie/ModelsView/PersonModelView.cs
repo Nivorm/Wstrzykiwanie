@@ -1,6 +1,6 @@
-﻿namespace Wstrzykiwanie.ViewModels.Person
+﻿namespace Models.ModelsView
 {
-    public class PersonForListVm
+    public class PersonModelView
     {
         public int Id { get; set; }
         public string FullName { get; set; }

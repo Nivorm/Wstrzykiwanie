@@ -5,6 +5,7 @@ namespace Wstrzykiwanie.Models
 {
     public class Address
     {
+        [Required]
         public int Id { get; set; }
         [Required]
         [MaxLength(100)]

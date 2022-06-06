@@ -1,5 +1,5 @@
 ﻿using Wstrzykiwanie.Interfaces;
-using Wstrzykiwanie.Repositories;
+using Data.Repository;
 using Wstrzykiwanie.Services;
 
 namespace Wstrzykiwanie

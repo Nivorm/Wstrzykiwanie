@@ -2,18 +2,19 @@ using Microsoft.EntityFrameworkCore;
 using Wstrzykiwanie;
 using Wstrzykiwanie.Data;
 using Wstrzykiwanie.Interfaces;
-using Wstrzykiwanie.Repositories;
 using Wstrzykiwanie.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<PeopleContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("Wstrzykiwanie")));
+
+builder.Services.AddDbContext<PeopleContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Wstrzykiwanie")));
+
 builder.Services.AddTransient<IPersonService, PersonService>();
+
 //builder.Services.AddTransient<IPersonService, PersonService>();
 //builder.Services.AddTransient<IPersonRepository, PersonRepository>();
+
 builder.Services.AddProjectService();
 
 var app = builder.Build();
